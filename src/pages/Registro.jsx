@@ -25,6 +25,7 @@ const Registro = () => {
           console.log(jsonData);
         }) 
         .catch(error => {
+        console.log("No sirivio")
           alert("pailas");
         })
   

@@ -1,0 +1,24 @@
+.inicioSesion{
+
+    border: 1px solid bisque;
+    padding: 40px;
+    border-radius: 15px;
+    font-style: italic;
+    font-size: 20px;
+    background-color: beige;
+    
+}
+.Titulo{
+    font-style: italic;
+    font-size: 50px;
+}
+.cuadrosSesion{
+    margin: 15px;
+}
+.botonIncio{
+    margin: 10px;
+    background-color: blueviolet;
+    border-radius: 5px;
+    height: auto;
+
+}

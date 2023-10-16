@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import Registro from './Registro';
 import Persona from './Persona';
+import RegistroEmpresa from './RegistroEmpresa';
 import { Link } from 'react-router-dom';
 import '../style.css'
 
@@ -11,12 +12,17 @@ const Home = () => {
     const [Password, setPassword] = useState("");
     const [Tipo, setTipo] = useState("");
     const navigate = useNavigate();
-    const url ="https://backend-tinder.onrender.com"
+    const [inicio, setInicio]=useState("");
+    const url1 ="https://backend-tinder.onrender.com"
+    const url2 = "http://localhost:3000"
 
+    const sesion = () => {
+      setInicio("Usuario o contraseña incorrecta");
+  }
 
     const login = (usuario, password, tipo) => {
       console.log('entre a funcion login ')
-      fetch(`${url}/api/v1/login/auth`, {
+      fetch(`${url2}/api/v1/login/auth`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -29,15 +35,15 @@ const Home = () => {
         })
         .then(response => response.json())
         .then(json => {
-          console.log("hellow")
+       
           console.log(json)
           if(json.token) {
             console.log(json.token)
             window.sessionStorage.setItem('token', json.token);
-            alert('inicio correcto');
+           
             navigate('/Persona');
         } else {
-            alert('Datos incorrectos');
+            sesion()
         }
       })      
       console.log(usuario);
@@ -52,6 +58,7 @@ const Home = () => {
       
       <div className='inicioSesion row'>
         <h1> Bienvenido</h1>
+        <h4> {inicio} </h4>
         <form onSubmit={ev => {
           ev.preventDefault();
           login(Usuario, Password, Tipo);
@@ -63,7 +70,7 @@ const Home = () => {
           </div>
           <div className='form-group cuadrosSesion'>
             <label >Contraseña</label>
-            <input className="form-control" placeholder="Ingrese su Contraseña" value={Password} onChange={ev => setPassword(ev.target.value)}></input>
+            <input type='password' className="form-control" placeholder="Ingrese su Contraseña" value={Password} onChange={ev => setPassword(ev.target.value)}></input>
           </div>
 
           <div className='dropdown cuadrosSesion'>
@@ -78,29 +85,21 @@ const Home = () => {
           <button type="submit" className=' botonIncio' > Iniciar Sesion </button>
         </form>
         <div>
-          <button type="submit" className='botonIncio' > Registrarse </button>
+          <button type="submit" className='botonIncio' > <Link className='registro'
+                  to={'/RegistroEmpresa'}> Registrar Empresa </Link> 
+          </button>
+
+          <button type="submit" className='botonIncio col-3' > <Link className='registro'
+                  to={'/Registro'}> Registrar Persona </Link> 
+          </button>
         </div>
+      
 
       </div>
-      
-      
-
-
-    {/* <h1> Tinder de Habilidades</h1>
-    <h1>Bienvenido </h1>
-    <br />
-    <div>
-    <button > <Link to={`/InicioSesion`}>Iniciar Sesion </Link></button>
-    </div>
-    <br />
-    <div>
-    <button > <Link to={`/Registro`}>Registrarse </Link></button>
-    </div> */}
-    
    
     
     </>
   )
 }
 
-export default Home
+export default Home;

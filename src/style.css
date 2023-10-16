@@ -22,3 +22,21 @@
     height: auto;
 
 }
+
+.registro{
+    text-decoration: none;
+    color: white;
+
+}
+.registroUsuario{
+    
+    border: 1px solid bisque;
+    padding: 40px;
+    border-radius: 15px;
+    font-style: italic;
+    font-size: 20px;
+    background-color: beige;
+    margin: 30px;
+   
+
+}

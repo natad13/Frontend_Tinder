@@ -3,24 +3,16 @@ import '../style.css'
 import Home from './Home';
 import { Link } from 'react-router-dom';
 
+const RegistroEmpresa = () => {
 
 
-
-
-const Registro = () => {
-
-
-    const [id_persona, setId_persona] = useState("");
-    const [habilidades, setHabilidades] = useState("");
-    const [precio_hora, setPrecio_hora] = useState("");
+    const [id_empresa, setId_empresa] = useState("");
     const [nombre, setNombre] = useState("");
-    const [calificacion_total, setCalificacion_total] = useState("0");
     const [usuario, setUsuario] = useState("0");
     const [contrasena, setContrasena] = useState("0");
     const [validacion_usuario, setValidacion_usuario] = useState("");
     const url1 ="https://backend-tinder.onrender.com"
     const url2 = "http://localhost:3000"
-    
     
     const validacion= (x) => {
       setValidacion_usuario(x);
@@ -29,17 +21,14 @@ const Registro = () => {
 
     function Funcion_post() {
 
-        fetch(`${url1}/api/v1/persona/`, {
+        fetch(`${url1}/api/v1/empresas/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                "id_persona": id_persona,
-                "habilidades": habilidades,
-                "precio_hora": precio_hora,
+                "id_empresa": id_empresa,
                 "nombre": nombre,
-                "calificacion_total": calificacion_total,
                 "usuario": usuario,
                 "contrasena": contrasena
             })
@@ -48,6 +37,7 @@ const Registro = () => {
             .then(jsonData => {
                 const resultado = (jsonData)
                 if (resultado.message == "error") {
+                    alert("usuario existe")
                     validacion("El usuario ya existe")
                 }else{
                     validacion("El usuario fue creado correctamente")
@@ -68,9 +58,9 @@ const Registro = () => {
             
             <form novalidate  className="needs-validation" onSubmit={ev => {ev.preventDefault();Funcion_post(); }}>
                 <div >
-                    <label htmlFor="validationCustom01" className="form-label " > Numero de Identificación</label>
+                    <label htmlFor="validationCustom01" className="form-label " > Nit</label>
                     <input input type="text" className="form-control" id="validationCustom05" 
-                    onChange={ev => setId_persona(ev.target.value)} required/>
+                    onChange={ev => setId_empresa(ev.target.value)} required/>
                 </div>
                 <div >
                     <label htmlFor="validationCustom02" className="form-label">Nombre Completo</label>
@@ -78,18 +68,7 @@ const Registro = () => {
                     onChange={ev => setNombre(ev.target.value)}  required/>
                 </div>
 
-                <div >
-                    <label htmlFor="validationCustom01" className="form-label">Habilidades</label>
-                    <input input type="text" className="form-control" id="validationCustom05"
-                    onChange={ev => setHabilidades(ev.target.value)} required/>
-                </div>
-
-                <div >
-                    <label htmlFor="validationCustom01" className="form-label">Precio/Hora</label>
-                    <input input type="text" className="form-control" id="validationCustom05" 
-                    onChange={ev => setPrecio_hora(ev.target.value)}required/>
-                </div>
-
+        
                 <div >
                     <label htmlFor="validationCustom01" className="form-label">Usuario</label>
                     <input input type="text" className="form-control" id="validationCustom05" 
@@ -124,4 +103,4 @@ const Registro = () => {
 
 };
 
-export default Registro;
+export default RegistroEmpresa;

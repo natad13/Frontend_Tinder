@@ -22,7 +22,7 @@ const Home = () => {
 
     const login = (usuario, password, tipo) => {
       console.log('entre a funcion login ')
-      fetch(`${url2}/api/v1/login/auth`, {
+      fetch(`${url1}/api/v1/login/auth`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import Registro from './Registro';
 import Persona from './Persona';
+import MostrarPerfiles from './MostrarPerfiles';
 import RegistroEmpresa from './RegistroEmpresa';
 import { Link } from 'react-router-dom';
 import '../style.css'
@@ -35,26 +36,30 @@ const Home = () => {
         })
         .then(response => response.json())
         .then(json => {
-       
-          console.log(json)
-          if(json.token) {
-            console.log(json.token)
-            window.sessionStorage.setItem('token', json.token);
-           
-            navigate('/Persona');
+          console.log("datos de vuelta")
+          const token = json[0].token;
+          if(token) {
+            console.log(json[1].id)
+            window.sessionStorage.setItem('token', json[0].token);
+            if (tipo == "persona") {
+              navigate('/Persona');
+
+            }else{
+              navigate(`/PerfilEmpresa/${json[1].id}`);
+            }
+            
         } else {
             sesion()
         }
       })      
-      console.log(usuario);
-      console.log(tipo);
+   
     };
 
  
 
   return (
     <>
-      <h1 className='Titulo'> Tinder de Habilidades</h1>
+      <h2 className='Titulo'> Tinder de Habilidades</h2>
       
       <div className='inicioSesion row'>
         <h1> Bienvenido</h1>
@@ -89,7 +94,7 @@ const Home = () => {
                   to={'/RegistroEmpresa'}> Registrar Empresa </Link> 
           </button>
 
-          <button type="submit" className='botonIncio col-3' > <Link className='registro'
+          <button type="submit" className='botonIncio ' > <Link className='registro'
                   to={'/Registro'}> Registrar Persona </Link> 
           </button>
         </div>

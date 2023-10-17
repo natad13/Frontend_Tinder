@@ -62,7 +62,7 @@ const Registro = () => {
 
 
     return <>
-        <h1> Registro de informacion</h1>
+        <h2 className='Titulo'> Registro de informacion</h2>
         {validacion_usuario}
         <div className='registroUsuario  '>
             

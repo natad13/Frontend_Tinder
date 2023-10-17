@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 export default function Contacts() {
     const [contacts, setContacts] = useState([]);
     const navigate = useNavigate();
+    const url1 ="https://backend-tinder.onrender.com"
+    const url2 = "http://localhost:3000"
 
 const getContacts = () => {
-    fetch('http://localhost:3000/api/v1/tareas/', {
+    fetch(`${url1}/api/v1/tareas/`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

@@ -4,22 +4,26 @@
     padding: 40px;
     border-radius: 15px;
     font-style: italic;
-    font-size: 20px;
-    background-color: beige;
-    
+    font-size: 23px;
+    background-color: rgba(195, 183, 202, 0.551);
+    color: rgb(15, 8, 15);
 }
 .Titulo{
     font-style: italic;
     font-size: 50px;
+    color: rgb(235, 220, 235);
+    
 }
 .cuadrosSesion{
     margin: 15px;
 }
 .botonIncio{
     margin: 10px;
-    background-color: blueviolet;
+    padding: auto;
+    background-color: rgb(126, 87, 163);
     border-radius: 5px;
     height: auto;
+
 
 }
 
@@ -34,9 +38,69 @@
     padding: 40px;
     border-radius: 15px;
     font-style: italic;
-    font-size: 20px;
-    background-color: beige;
+    font-size: 23px;
+    background-color: rgba(195, 183, 202, 0.326);
     margin: 30px;
-   
+    color: rgb(15, 8, 15);
 
 }
+.card_2{
+    background-color: aqua;
+    
+}
+.barra_navegacion{
+
+    border: 1px solid blue;
+}
+.ejemplo1{
+    margin: 10px;
+    border: 1px solid blue;
+    
+    
+   
+  
+}
+.ejemplo2{
+    border: 1px solid rgb(255, 170, 0);
+  
+    
+ 
+}
+
+.contenedor{
+    border: 1px solid rgb(185, 226, 241);
+    border-radius: 5px;
+    display:flex;
+    
+    
+}
+.contenedor2{
+    border: 1px solid rgb(201, 41, 41);
+    border-radius: 5px;
+    display:flex;
+    
+    
+}
+
+.datosEmpresa {
+    
+    padding: 200px;
+    background-color: rgba(195, 183, 202, 0.551);
+    height: 500px;
+    border-radius: 5px;
+   
+    
+}
+.botonesEmpresa {
+    padding-top: 150px;
+  
+    
+}
+.nombreEmpresa{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+
+}
+.fondo{
+    background-image: url('https://source.unsplash.com/eHckTKxBGq8');
+}
+

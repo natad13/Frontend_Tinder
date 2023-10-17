@@ -23,7 +23,7 @@ const Home = () => {
 
     const login = (usuario, password, tipo) => {
       console.log('entre a funcion login ')
-      fetch(`${url1}/api/v1/login/auth`, {
+      fetch(`${url2}/api/v1/login/auth`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -37,22 +37,25 @@ const Home = () => {
         .then(response => response.json())
         .then(json => {
           console.log("datos de vuelta")
+          console.log(json)
+          
           const token = json[0].token;
+          console.log(token)
           const id = json[1].id
-          if(token) {
-            console.log(json[1].id)
-            window.sessionStorage.setItem('token', token);
-            if (tipo == "persona") {
-              navigate('/Persona');
+            if(token) {
+              console.log(json[1].id)
+              window.sessionStorage.setItem('token', token);
+              if (tipo == "persona") {
+                navigate('/Persona');
 
-            }else{
-              navigate(`/PerfilEmpresa/${id}`);
-            }
-            
-        } else {
-            sesion()
+              }else{
+                navigate(`/PerfilEmpresa/${id}`);
+              }  
         }
-      })      
+      }).catch(error => {
+        sesion()
+       
+    })      
    
     };
 

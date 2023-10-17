@@ -38,14 +38,15 @@ const Home = () => {
         .then(json => {
           console.log("datos de vuelta")
           const token = json[0].token;
+          const id = json[1].id
           if(token) {
             console.log(json[1].id)
-            window.sessionStorage.setItem('token', json[0].token);
+            window.sessionStorage.setItem('token', token);
             if (tipo == "persona") {
               navigate('/Persona');
 
             }else{
-              navigate(`/PerfilEmpresa/${json[1].id}`);
+              navigate(`/PerfilEmpresa/${id}`);
             }
             
         } else {

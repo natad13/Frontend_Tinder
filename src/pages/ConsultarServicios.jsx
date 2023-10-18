@@ -34,25 +34,20 @@ const ConsultarServicios = () => {
 
     useEffect(() => {
 
-
+        
         fetch(`${url1}/api/v1/tareas/empresa/${id_empresa}/`)
             .then(response => response.json())
 
             .then(jsonData => {
-
-                setPersonas(jsonData);
+                let tareasFiltradas = jsonData.filter(tarea => tarea.estado == false);
+                setPersonas(tareasFiltradas);
 
             })
             .catch(error => {
                 alert('No se pudo establecer conexión a la API. ');
             })
 
-            let tareasFiltradas = personas.filter(tarea => tarea.estado == false);
-        
-            //console.log(tareasFiltradas)
-            setTareasF(tareasFiltradas)
-            console.log(tareasF)
-
+       
     }, []);
 
 
@@ -67,7 +62,8 @@ const ConsultarServicios = () => {
             
             <div className='map row' >
                 {
-                    tareasF.map((items, index) => (
+                
+                    personas.map((items, index) => (
 
                             
                             <div className='col-12 col-sm-8 col-md-4 map'>

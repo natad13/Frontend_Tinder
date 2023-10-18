@@ -2,6 +2,8 @@ import { useState,useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
+
+
 import '../style.css';
 
 export default function Tarea() {
@@ -10,7 +12,7 @@ export default function Tarea() {
     const [anticipo, setAnticipo] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [pagototal, setPagoTotal] = useState("");
-
+    const [tarea, setTarea]=useState("");
     const url1 ="https://backend-tinder.onrender.com"
     const url2 = "http://localhost:3000"
     
@@ -38,10 +40,10 @@ export default function Tarea() {
             .then(jsonData => {
                 const resultado = (jsonData)
                 if (resultado.message == "error") {
-                    alert("Tarea no creada")
+                    alert("Servicio no creada")
                    
                 }else{
-                    alert("Tarea  creada")
+                    alert("Servicio  creada")
                 }
             })
             .catch(error => {
@@ -54,21 +56,22 @@ export default function Tarea() {
 return <section >
         <nav className='barra_navegacion row col-12'>
             <div>
-                <h1>menu</h1>
+                <h2 className='Titulo'>menu</h2>
             </div>
         </nav>
 
     <div className='contenedor'>
     <section className='col-6'>
-            <div className='ejemplo1'>
-                <h1>hola</h1>
+            <div className='ContenedorParrafo'>
+               
+                <p className='parrafo '> A continuacion ingrese los datos para los cuales desea contratar la persona</p>
             </div>
         </section>
         
-        <section className=' ejemplo2 col-6'>
+        <section className=' ContenedorTarea col-6'>
         
-            <h1> Creacion de Servicio</h1>
-
+            <h1 className='Titulo'> Creacion de Servicio</h1>
+            <h2>{tarea}</h2>
             <div className='registroUsuario  '>
                 <form novalidate  className="needs-validation" onSubmit={ev => {ev.preventDefault();Funcion_post(); }}>
                     <div >
@@ -90,14 +93,12 @@ return <section >
                     </div>
 
                     <div >
-                        <button className="botonIncio " type="submit">Enviar Servicio</button>
+                        <button className="botonIncio " type="submit"> <Link className='registro'
+                    to={`/PerfilEmpresa/${id_empresa}`}> Enviar Servicio </Link> </button>
                     </div>
 
                 </form>
-                <div >
-                        <button className="botonIncio " type="submit"><Link className='registro'
-                    to={'/Home'}> Iniciar Sesion </Link> </button>
-                    </div>
+                
 
             </div>
             </section>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import Tarea from './Tarea';
 import React from 'react';
 import '../style.css'
 
@@ -35,15 +36,16 @@ const Home = () => {
 
     return (
         <div className=' container '>
-            <h1>PERSONAS</h1>
+            <h1>PERFILES PERSONAS</h1>
           <div className='map row' >
           {
                 personas.map((items,index) =>(
-                <div className='col-6 col-sm-6 col-md-3 map'>
+                <div className='col-12 col-sm-6 col-md-3 map'>
                   <div className="card " >
-                      <img className="card-img-top" src={`https://source.unsplash.com/random/800x800/?${imagenes[getRandomInt(5)]}`} alt="Card image cap"></img>
+                      {/* <img className="card-img-top" src={`https://source.unsplash.com/random/800x800/?${imagenes[getRandomInt(5)]}`} alt="Card image cap"></img> */}
+                      <img className="card-img-top" src={``} alt="Card image cap"></img>
                       <div className="card-body">
-                      <h5 className="card-title"><Link to={`/MostrarPerfiles/${id}/${items.id_persona}`}className='card-title'>
+                      <h5 className="card-title"><Link to={`/Tarea/${id}/${items.id_persona}`}className='card-title'>
                         {items.nombre}
                       </Link>
                     </h5> 

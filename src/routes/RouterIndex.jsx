@@ -6,6 +6,7 @@ import RegistroEmpresa from '../pages/RegistroEmpresa';
 import MostrarPerfiles from '../pages/MostrarPerfiles';
 import Tarea from '../pages/Tarea';
 import PerfilEmpresa from '../pages/PerfilEmpresa';
+import ConsultarServicios from '../pages/ConsultarServicios';
 
 const RouterIndex = () => {
     return (
@@ -16,8 +17,9 @@ const RouterIndex = () => {
             <Route path='/Registro' element={<Registro />} />
             <Route path='/RegistroEmpresa' element={<RegistroEmpresa />} />
             <Route path='/MostrarPerfiles/:id' element={<MostrarPerfiles/>} />
-            <Route path='/MostrarPerfiles/:id_empresa/:id_persona' element={<Tarea/>} />
+            <Route path='/Tarea/:id_empresa/:id_persona' element={<Tarea/>} />
             <Route path='/PerfilEmpresa/:id_empresa' element={<PerfilEmpresa/>} />
+            <Route path='/ConsultarServicios/:id_empresa' element={<ConsultarServicios/>} />
             
             
         </Routes>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import Tarea from './Tarea';
 import React from 'react';
@@ -10,31 +11,40 @@ const ConsultarServicios = () => {
     const [pago, setPago] = useState();
     const [preciototal, setPrecioTotal] = useState();
     const [calificacion, setCalificacion] = useState();
+    const [id_tarea, setId_tarea] = useState();
     const { id_empresa } = useParams();
     const url1 = "https://backend-tinder.onrender.com"
     const url2 = "http://localhost:3000"
     const estado ="true"
     const [tareasF , setTareasF] = useState([]);
+    const [datos, setDatos] =useState();
+    const navigate = useNavigate();
+    const [idpersona, setIdpersona] =useState();
 
-    function update() {
-
-        alert("hola")
-
-        let tareasFiltradas = personas.filter(tarea => tarea.estado == false);
-        
-        //console.log(tareasFiltradas)
-        setTareasF(tareasFiltradas)
-        console.log(tareasF)
-
-    }
-
-
+    function update(tarea) {
+        console.log("update")
     
-        
+        if (calificacion == undefined || pago == undefined ) {
+            console.log("error 1")
+            setDatos("Los Valores ingresados son incorrectos")
+        } else if (pago == undefined) {
+            console.log("error 2")
+            setDatos("Los Valores ingresados son incorrectos")
+        }else if (  (Number(pago) + Number(tarea.anticipo)) <Number(tarea.precio_total)){
+            console.log("error 3")
+            setDatos("Los Valores ingresados son incorrectos")
+        }else if (  Number(calificacion)< 1 || Number(calificacion)> 10){
+            console.log("error 4")
+            setDatos("Los Valores ingresados son incorrectos")
+        }else{
+            patch(tarea.id_tarea)
+            console.log(tarea.idpersona)
+            setIdpersona(tarea.idpersona)
+        }
+    }
+    
 
     useEffect(() => {
-
-        
         fetch(`${url1}/api/v1/tareas/empresa/${id_empresa}/`)
             .then(response => response.json())
 
@@ -46,18 +56,64 @@ const ConsultarServicios = () => {
             .catch(error => {
                 alert('No se pudo establecer conexión a la API. ');
             })
-
        
     }, []);
 
 
+function updatescore(id) {
+    console.log(`fetch ${Number(id)}`)
+    fetch(`${url1}/api/v1/persona/${id}/`)
+      .then(response => response.json())
+      .then(json => {
+          console.log("persona")
+          console.log(json.calificacion_total)
+          return console.log(json);
 
-   
+       })
+      .catch(error => {
+          return console.log("No se pudo actualizar la tarea")
+      })
+    
+}
+
+
+
+
+
+function patch(id) {
+    fetch(`${url1}/api/v1/tareas/${id}/`,{
+        method: "PATCH",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            "estado": "True",
+            "calificacion":calificacion,
+        })
+
+      })
+      .then(response => response.json())
+      .then(json => {
+
+          alert(" Servicio actualizado correctamente")
+          console.log(` id persona ${idpersona}`)
+          //updatescore(idpersona)
+          navigate(`/PerfilEmpresa/${id_empresa}`);
+          return console.log(json);
+       })
+      .catch(error => {
+          return console.log("No se pudo actualizar la tarea")
+      })
+    
+}
+
 
     return (
 
         <div className=' container '>
             <h1 className='Titulo'>SERVICIOS CONTRATADOS</h1>
+            
+            <h3 className='Titulo_pequeno'> {datos}</h3>
             
             
             <div className='map row' >
@@ -93,7 +149,7 @@ const ConsultarServicios = () => {
                                         </div>
 
 
-                                        <form novalidate className="needs-validation" onSubmit={ev => { ev.preventDefault(); update(); }}>
+                                        <form novalidate className="needs-validation" onSubmit={ev => { ev.preventDefault() }}>
                                             <div >
                                                 <label htmlFor="validationCustom01" className="form-label " > Calificacion (1 a 10 ):</label>
                                                 <input input type="number" min="1" max="10" className="form-control" id="validationCustom05"
@@ -104,13 +160,13 @@ const ConsultarServicios = () => {
                                                 <input type="number" min={items.anticipo} className="form-control" id="validationCustom02"
                                                     onChange={ev => setPago(ev.target.value)} required />
                                             </div>
-
+                                               
                                             <div >
-                                                <button className="botonIncio " type="submit"> Cerrar servicio</button>
+                                                <button  className="botonIncio " type="submit" onClick={ev => {ev.preventDefault();update(items)}}  > cerrar </button>
                                             </div>
 
                                         </form>
-
+                                        
 
                                     </div>
                                 </div>

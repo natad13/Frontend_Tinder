@@ -13,7 +13,7 @@ const RouterIndex = () => {
         <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/Home' element={<Home/>} />
-            <Route path='/Persona' element={<Persona />} />
+            <Route path='/Persona/:id_persona' element={<Persona />} />
             <Route path='/Registro' element={<Registro />} />
             <Route path='/RegistroEmpresa' element={<RegistroEmpresa />} />
             <Route path='/MostrarPerfiles/:id' element={<MostrarPerfiles/>} />

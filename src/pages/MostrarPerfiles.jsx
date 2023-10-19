@@ -42,7 +42,7 @@ const Home = () => {
                 personas.map((items,index) =>(
                 <div className='col-12 col-sm-6 col-md-3 map'>
                   <div className="card " >
-                      {/* <img className="card-img-top" src={`https://source.unsplash.com/random/800x800/?${imagenes[getRandomInt(5)]}`} alt="Card image cap"></img> */}
+                      <img className="card-img-top" src={`https://source.unsplash.com/random/800x800/?${imagenes[getRandomInt(5)]}`} alt="Card image cap"></img> 
                       <img className="card-img-top" src={``} alt="Card image cap"></img>
                       <div className="card-body">
                       <h5 className="card-title"><Link to={`/Tarea/${id}/${items.id_persona}`}className='card-title'>

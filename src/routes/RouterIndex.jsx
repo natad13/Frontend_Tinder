@@ -7,6 +7,7 @@ import MostrarPerfiles from '../pages/MostrarPerfiles';
 import Tarea from '../pages/Tarea';
 import PerfilEmpresa from '../pages/PerfilEmpresa';
 import ConsultarServicios from '../pages/ConsultarServicios';
+import ConsultarServiciosPersonas from '../pages/ConsultarServiciosPersona';
 
 const RouterIndex = () => {
     return (
@@ -20,6 +21,7 @@ const RouterIndex = () => {
             <Route path='/Tarea/:id_empresa/:id_persona' element={<Tarea/>} />
             <Route path='/PerfilEmpresa/:id_empresa' element={<PerfilEmpresa/>} />
             <Route path='/ConsultarServicios/:id_empresa' element={<ConsultarServicios/>} />
+            <Route path='/ConsultarServiciosPersonas/:id_persona' element={<ConsultarServiciosPersonas/>} />
             
             
         </Routes>

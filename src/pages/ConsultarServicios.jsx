@@ -112,7 +112,11 @@ function patch(id) {
 
         <div className=' container '>
             <h1 className='Titulo'>SERVICIOS CONTRATADOS</h1>
-            
+            <div className=' botonesinicio col-12 '>
+            <button type="submit" className='botonIncio col-3' > <Link className='registro'to={`/Persona/${id_empresa}`}> Regresar </Link></button>
+            <button type="submit" className='botonIncio col-3' > <Link className='registro'to={`/Home/`}> Cerrar Sesion </Link></button>
+         
+            </div>
             <h3 className='Titulo_pequeno'> {datos}</h3>
             
             

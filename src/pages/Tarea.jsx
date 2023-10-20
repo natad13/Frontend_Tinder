@@ -13,6 +13,7 @@ export default function Tarea() {
     const [descripcion, setDescripcion] = useState("");
     const [pagototal, setPagoTotal] = useState("");
     const [tarea, setTarea]=useState("");
+    const navigate = useNavigate();
     const url1 ="https://backend-tinder.onrender.com"
     const url2 = "http://localhost:3000"
     
@@ -20,6 +21,7 @@ export default function Tarea() {
 
     function Funcion_post() {
 
+        console.log("entre a post de crear tarea")
         fetch(`${url1}/api/v1/tareas/`, {
             method: "POST",
             headers: {
@@ -40,10 +42,12 @@ export default function Tarea() {
             .then(jsonData => {
                 const resultado = (jsonData)
                 if (resultado.message == "error") {
-                    alert("Servicio no creada")
+                    
+                    
                    
                 }else{
-                    alert("Servicio  creada")
+                    alert("Servicio  creado")
+                    navigate(`/PerfilEmpresa/${id_empresa}`);
                 }
             })
             .catch(error => {
@@ -93,8 +97,7 @@ return <section >
                     </div>
 
                     <div >
-                        <button className="botonIncio " type="submit"> <Link className='registro'
-                    to={`/PerfilEmpresa/${id_empresa}`}> Enviar Servicio </Link> </button>
+                        <button className="botonIncio " type="submit"> Enviar Servicio  </button>
                     </div>
 
                 </form>

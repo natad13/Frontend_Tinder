@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react'
 import '../style.css'
 import Home from './Home';
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
+  
 
 
 
 
 const Registro = () => {
 
-
+    const navigate = useNavigate();
     const [id_persona, setId_persona] = useState("");
     const [habilidades, setHabilidades] = useState("");
     const [precio_hora, setPrecio_hora] = useState("");
@@ -51,6 +52,7 @@ const Registro = () => {
                     validacion("El usuario ya existe")
                 }else{
                     validacion("El usuario fue creado correctamente")
+                    navigate('/Home');
                 }
             })
             .catch(error => {

@@ -11,7 +11,6 @@ const Home = () => {
 
     const [Usuario, setUsuario] = useState();
     const [Password, setPassword] = useState();
-    const [activate, setActivate] =useState();
     const [Tipo, setTipo] = useState();
     const navigate = useNavigate();
     const [inicio, setInicio]=useState("");
@@ -22,49 +21,9 @@ const Home = () => {
       setInicio("Usuario o contraseña incorrecta");
   }
 
-  const post = () => {
-    console.log("entrooo a post 1 ")
-    setActivate("incio post");
-    //console.log(activate);
-}
 
 
-
-      useEffect(() => {
-        fetch(`${url1}/api/v1/login/auth/`,{
-          method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              "usuario": Usuario,
-              "contrasena":Password,
-              "tipo":Tipo
-          })
-
-        })
-        .then(response => response.json())
-        .then(json => {
-          console.log("POST....")
-          const token = json[0].token;
-          const id = json[1].id;
-          if(token) {
-            window.sessionStorage.setItem('token', token);
-            if (Tipo == "persona") {
-              navigate(`/Persona/${id}`);
-
-            }else{
-              navigate(`/PerfilEmpresa/${id}`);
-            }  
-      }})
-        .catch(error => {
-          sesion()
-        })
-
-    
-      }, [activate]);
-
-    /* const login = (usuario, password, tipo) => {
+    const login = (usuario, password, tipo) => {
       console.log('entre a funcion login ')
       fetch(`${url1}/api/v1/login/auth`, {
             method: "POST",
@@ -85,7 +44,7 @@ const Home = () => {
             if(token) {
               window.sessionStorage.setItem('token', token);
               if (tipo == "persona") {
-                navigate('/Persona');
+                navigate(`/Persona/${id}`);
 
               }else{
                 navigate(`/PerfilEmpresa/${id}`);
@@ -96,7 +55,7 @@ const Home = () => {
        
     })      
    
-    }; */
+    }; 
 
  
 
@@ -108,12 +67,11 @@ const Home = () => {
         <h1> Bienvenido</h1>
         <h4> {inicio} </h4>
         <form onSubmit={ev => {
-          ev.preventDefault();
-          post();
+          ev.preventDefault();login(Usuario,Password,Tipo);
         }} >
           <div className='form-group cuadrosSesion '>
             <label >Usuario</label>
-            <input className="form-control" placeholder="Ingrese su usuario" value={Usuario} onChange={ev => setUsuario(ev.target.value)}></input>
+            <input className="form-control" placeholder="Ingrese su usuario" value={Usuario} onChange={ev =>{ setUsuario(ev.target.value)}}></input>
 
           </div>
           <div className='form-group cuadrosSesion'>
@@ -130,7 +88,7 @@ const Home = () => {
             </select>
           </div>
 
-          <button type="submit" className=' botonIncio '  > Iniciar Sesion </button>
+          <button type="submit" className=' botonIncio ' > Iniciar Sesion </button>
         </form>
         <div>
           <button type="submit" className='botonIncio' > <Link className='registro'

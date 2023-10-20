@@ -53,6 +53,11 @@ const PerfilEmpresa = () =>{
                         to={`/ConsultarServicios/${id_empresa}`}> Consultar Servicios </Link>
                     </button>
                 </div>
+                <div>
+                    <button type="submit" className='botonIncio col-6' > <Link className='registro'
+                        to={`/Home/`}> Cerrar Sesion </Link>
+                    </button>
+                </div>
 
                 
                 

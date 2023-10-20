@@ -10,7 +10,7 @@ const Home = () => {
     const {id} = useParams();
     const url1 ="https://backend-tinder.onrender.com"
     const url2 = "http://localhost:3000"
-   
+    const [filtroNombre,setFiltroNombre] = useState('');
     const imagenes =["river", "cartoon","park","beautiful","relax"]
     function getRandomInt(max) {
       return Math.floor(Math.random() * max);
@@ -22,6 +22,7 @@ const Home = () => {
       .then(jsonData => {
         
         setPersonas(jsonData);
+
        
       })
       .catch(error => {
@@ -30,20 +31,46 @@ const Home = () => {
    
     }, []);
   
+    const personasFiltrados = personas.filter(persona =>
+      {
+        return persona.habilidades.toLowerCase().includes(filtroNombre.toLocaleLowerCase());
+      })
+      const capturarFiltroNombre = (event) => {
+        setFiltroNombre(event.target.value);
+      }
 
 
-    console.log(personas)
+
+
 
     return (
         <div className=' container '>
-            <h1>PERFILES PERSONAS</h1>
+            <h1 className='Titulo'>PERFILES PERSONAS</h1>
+            <div className=' botonesinicio col-12 '>
+            <button type="submit" className='botonIncio col-3' > <Link className='registro'to={`/PerfilEmpresa/${id}`}> Regresar </Link></button>
+            <button type="submit" className='botonIncio col-3' > <Link className='registro'to={`/Home/`}> Cerrar Sesion </Link></button>
+         
+            </div>
+
+            <div className='col-12 buscarPersona'>
+          <label className=' inputHabilidad'>Búsqueda por nombre: </label>
+          <input 
+            value={filtroNombre}
+            onChange={capturarFiltroNombre}
+            className='cuadroHabilidad'
+          />
+
+          </div>
+
+
+            
           <div className='map row' >
           {
-                personas.map((items,index) =>(
+                personasFiltrados.map((items,index) =>(
                 <div className='col-12 col-sm-6 col-md-3 map'>
                   <div className="card " >
                       <img className="card-img-top" src={`https://source.unsplash.com/random/800x800/?${imagenes[getRandomInt(5)]}`} alt="Card image cap"></img> 
-                      <img className="card-img-top" src={``} alt="Card image cap"></img>
+                      
                       <div className="card-body">
                       <h5 className="card-title"><Link to={`/Tarea/${id}/${items.id_persona}`}className='card-title'>
                         {items.nombre}

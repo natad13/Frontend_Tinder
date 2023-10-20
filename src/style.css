@@ -164,3 +164,29 @@
     color: rgb(235, 220, 235);
     
 }
+.card{
+    margin: 20px;
+}
+.botonesinicio{
+    display: flex;
+    justify-content:space-around
+}
+
+.buscarPersona{
+    font-style: italic;
+
+
+}
+
+.cuadroHabilidad{
+    background-color:rgba(250, 235, 215, 0.242)
+
+
+}
+
+.inputHabilidad{
+
+    font-size: 20px;
+    color: rgb(235, 220, 235);
+    padding-right: 10px;
+}

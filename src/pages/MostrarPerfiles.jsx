@@ -16,7 +16,7 @@ const Home = () => {
       return Math.floor(Math.random() * max);
     }
     useEffect(() => {
-      fetch(`${url1}/api/v1/persona/`)
+      fetch(`${url2}/api/v1/persona/`)
       .then(response => response.json())
       
       .then(jsonData => {

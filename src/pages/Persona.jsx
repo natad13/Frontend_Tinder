@@ -12,7 +12,7 @@ export default function Contacts() {
     const {id_persona} = useParams();
 
 const getContacts = () => {
-    fetch(`${url1}/api/v1/persona/ ${id_persona}`, {
+    fetch(`${url2}/api/v1/persona/ ${id_persona}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const score_total =(tareas)=>{
 
 
 function patch(score) {
-    fetch(`${url1}/api/v1/persona/${id_persona}/`,{
+    fetch(`${url2}/api/v1/persona/${id_persona}/`,{
         method: "PATCH",
           headers: {
               "Content-Type": "application/json",

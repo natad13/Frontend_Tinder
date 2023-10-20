@@ -23,7 +23,8 @@ const ConsultarServiciosPersonas = () => {
     
 
     useEffect(() => {
-        fetch(`${url1}/api/v1/tareas/persona/${id_persona}/`)
+        console.log("consulta de tareas por persona")
+        fetch(`${url2}/api/v1/tareas/persona/${id_persona}/`)
             .then(response => response.json())
 
             .then(jsonData => {
@@ -34,7 +35,7 @@ const ConsultarServiciosPersonas = () => {
 
             })
             .catch(error => {
-                alert('No se pudo establecer conexión a la API. ');
+                alert('No se pudo establecer conexión a la API tarea persona. ');
             })
        
     }, []);

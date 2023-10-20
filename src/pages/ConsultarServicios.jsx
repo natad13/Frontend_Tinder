@@ -69,7 +69,7 @@ const ConsultarServicios = () => {
         console.log("A continuacion el token")
         let tokeen = (sessionStorage.getItem('token'));
         
-        fetch(`${url1}/api/v1/tareas/empresa/${id_empresa}/`,{
+        fetch(`${url2}/api/v1/tareas/empresa/${id_empresa}/`,{
             method:"GET",
             headers:{
                 "Content-Type": "application/json",
@@ -94,7 +94,7 @@ const ConsultarServicios = () => {
 
 function updatescore(id) {
     console.log(`fetch ${Number(id)}`)
-    fetch(`${url1}/api/v1/persona/${id}/`)
+    fetch(`${url2}/api/v1/persona/${id}/`)
       .then(response => response.json())
       .then(json => {
           console.log("persona")
@@ -113,7 +113,7 @@ function updatescore(id) {
 
 
 function patch(id) {
-    fetch(`${url1}/api/v1/tareas/${id}/`,{
+    fetch(`${url2}/api/v1/tareas/${id}/`,{
         method: "PATCH",
           headers: {
               "Content-Type": "application/json",

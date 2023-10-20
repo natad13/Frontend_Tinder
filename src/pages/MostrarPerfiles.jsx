@@ -73,7 +73,7 @@ const Home = () => {
                       
                       <div className="card-body">
                       <h5 className="card-title"><Link to={`/Tarea/${id}/${items.id_persona}`}className='card-title'>
-                        {items.nombre}
+                        { items.id_persona } { items.nombre}
                       </Link>
                     </h5> 
                       <p class="card-text"> Habilidades : {items.habilidades}  </p>

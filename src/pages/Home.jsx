@@ -42,7 +42,9 @@ const Home = () => {
           const token = json[0].token;
           const id = json[1].id
             if(token) {
-              window.sessionStorage.setItem('token', token);
+              //localStorage.setItem('token', token);
+              sessionStorage.setItem('token', token);
+              
               if (tipo == "persona") {
                 navigate(`/Persona/${id}`);
 

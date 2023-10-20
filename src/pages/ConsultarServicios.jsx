@@ -20,6 +20,8 @@ const ConsultarServicios = () => {
     const [datos, setDatos] =useState();
     const navigate = useNavigate();
     const [idpersona, setIdpersona] =useState();
+    const [token, setToken] =useState();
+
 
     function update(tarea) {
         console.log("update")
@@ -44,20 +46,50 @@ const ConsultarServicios = () => {
     }
     
 
-    useEffect(() => {
+  /*   useEffect(() => {
+        
+        setToken(sessionStorage.getItem("token"));
+        console.log(token)
         fetch(`${url1}/api/v1/tareas/empresa/${id_empresa}/`)
             .then(response => response.json())
 
             .then(jsonData => {
-                let tareasFiltradas = jsonData.filter(tarea => tarea.estado == false);
-                setPersonas(tareasFiltradas);
-
+              let tareasFiltradas = jsonData.filter(tarea => tarea.estado == false);
+              setPersonas(tareasFiltradas);
             })
             .catch(error => {
                 alert('No se pudo establecer conexión a la API. ');
+                navigate(`/Home/`);
+            })
+       
+    }, []); */
+
+
+    useEffect(() => {
+        console.log("A continuacion el token")
+        let tokeen = (sessionStorage.getItem('token'));
+        
+        fetch(`${url1}/api/v1/tareas/empresa/${id_empresa}/`,{
+            method:"GET",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization" : tokeen
+            }
+        }
+        )
+            .then(response => response.json())
+
+            .then(jsonData => {
+              let tareasFiltradas = jsonData.filter(tarea => tarea.estado == false);
+              setPersonas(tareasFiltradas);
+            })
+            .catch(error => {
+                alert('No se pudo establecer conexión a la API. ');
+                navigate(`/Home/`);
             })
        
     }, []);
+
 
 
 function updatescore(id) {
@@ -113,7 +145,7 @@ function patch(id) {
         <div className=' container '>
             <h1 className='Titulo'>SERVICIOS CONTRATADOS</h1>
             <div className=' botonesinicio col-12 '>
-            <button type="submit" className='botonIncio col-3' > <Link className='registro'to={`/Persona/${id_empresa}`}> Regresar </Link></button>
+            <button type="submit" className='botonIncio col-3' > <Link className='registro'to={`/PerfilEmpresa/${id_empresa}`}> Regresar </Link></button>
             <button type="submit" className='botonIncio col-3' > <Link className='registro'to={`/Home/`}> Cerrar Sesion </Link></button>
          
             </div>

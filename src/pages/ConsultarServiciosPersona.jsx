@@ -35,7 +35,7 @@ const ConsultarServiciosPersonas = () => {
 
             })
             .catch(error => {
-                alert('No se pudo establecer conexión a la API tarea persona. ');
+                alert('Aun no tienes servicios contratados. ');
             })
        
     }, []);

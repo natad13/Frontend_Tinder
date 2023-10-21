@@ -12,7 +12,7 @@ const RegistroEmpresa = () => {
     const [contrasena, setContrasena] = useState("0");
     const [validacion_usuario, setValidacion_usuario] = useState("");
     const url1 ="https://backend-tinder.onrender.com"
-    const url2 = "http://localhost:3000"
+    const url2 = "https://backend-tinder.onrender.com"
     
     const validacion= (x) => {
       setValidacion_usuario(x);
@@ -21,7 +21,7 @@ const RegistroEmpresa = () => {
 
     function Funcion_post() {
 
-        fetch(`${url1}/api/v1/empresas/`, {
+        fetch(`${url2}/api/v1/empresas/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const RegistroEmpresa = () => {
 
     return <>
         <h2 className='Titulo'> Registro de informacion</h2>
-        {validacion_usuario}
+         <h2 className='Titulo_pequeno' > {validacion_usuario}</h2> 
         <div className='registroUsuario  '>
             
             <form novalidate  className="needs-validation" onSubmit={ev => {ev.preventDefault();Funcion_post(); }}>
@@ -77,7 +77,7 @@ const RegistroEmpresa = () => {
 
                 <div >
                     <label htmlFor="validationCustom01" className="form-label">Contraseña</label>
-                    <input input type="text" className="form-control" id="validationCustom05" 
+                    <input input type="password" className="form-control" id="validationCustom05" 
                     onChange={ev => setContrasena(ev.target.value)}required/>
                 </div>
 

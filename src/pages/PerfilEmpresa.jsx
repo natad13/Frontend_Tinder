@@ -13,10 +13,10 @@ const PerfilEmpresa = () =>{
     const [empresa, setEmpresa] = useState();
     const [nit, setNit] = useState();
     const url1 ="https://backend-tinder.onrender.com"
-    const url2 = "http://localhost:3000"
+    const url2 = "https://backend-tinder.onrender.com"
 
     useEffect(() => {
-        fetch(`${url1}/api/v1/empresas/${id_empresa}`)
+        fetch(`${url2}/api/v1/empresas/${id_empresa}`)
         .then(response => response.json())
         .then(jsonData => {
             

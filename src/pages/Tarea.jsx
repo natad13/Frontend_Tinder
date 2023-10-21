@@ -15,14 +15,14 @@ export default function Tarea() {
     const [tarea, setTarea]=useState("");
     const navigate = useNavigate();
     const url1 ="https://backend-tinder.onrender.com"
-    const url2 = "http://localhost:3000"
+    const url2 = "https://backend-tinder.onrender.com"
     
 
 
     function Funcion_post() {
 
         console.log("entre a post de crear tarea")
-        fetch(`${url1}/api/v1/tareas/`, {
+        fetch(`${url2}/api/v1/tareas/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

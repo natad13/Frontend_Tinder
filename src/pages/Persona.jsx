@@ -8,15 +8,18 @@ export default function Contacts() {
     const [calificacion, setCalificacion] = useState();
     const navigate = useNavigate();
     const url1 ="https://backend-tinder.onrender.com"
-    const url2 = "http://localhost:3000"
+    const url2 = "https://backend-tinder.onrender.com"
     const {id_persona} = useParams();
 
 const getContacts = () => {
-    fetch(`${url1}/api/v1/persona/ ${id_persona}`, {
+    console.log("A continuacion el token")
+        let tokeen = (sessionStorage.getItem('token'));
+
+    fetch(`${url2}/api/v1/persona/ ${id_persona}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "authorization": `JTW ${window.sessionStorage.getItem('token')}`,
+            "Authorization" : tokeen
         }})
         .then(response => {
             if( response.status === 401 ) navigate('/Home');
@@ -41,9 +44,11 @@ const score_total =(tareas)=>{
     let element =0;
     
     for (let index = 0; index <length; index++) {
-        element = tareas[index].calificacion + element; 
+        if (true) {
+            element = tareas[index].calificacion + element;     
+        }
     }
-    element = element/length;
+    element = element/(length-1);
     setCalificacion(element);
     console.log(calificacion);   
     patch(element);
@@ -53,7 +58,7 @@ const score_total =(tareas)=>{
 
 
 function patch(score) {
-    fetch(`${url1}/api/v1/persona/${id_persona}/`,{
+    fetch(`${url2}/api/v1/persona/${id_persona}/`,{
         method: "PATCH",
           headers: {
               "Content-Type": "application/json",
@@ -80,16 +85,24 @@ function patch(score) {
 
 
 const actualizacion_tarea =() =>{
-    
+    console.log("A continuacion el token")
+    let tokeen = (sessionStorage.getItem('token'));
    
-        fetch(`${url1}/api/v1/tareas/persona/${id_persona}`)
+        fetch(`${url2}/api/v1/tareas/persona/${id_persona}`,{
+            method:"GET",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization" : tokeen
+            }
+
+        })
         .then(response => response.json())
         .then(jsonData => {
           score_total(jsonData);
           
         })
         .catch(error => {
-          alert('No se pudo establecer conexión a la API. ');
+          alert('Tu sesion a finalizado');
         })
      
       

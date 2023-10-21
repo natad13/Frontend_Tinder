@@ -11,7 +11,7 @@ const ConsultarServiciosPersonas = () => {
     
     const { id_persona } = useParams();
     const url1 = "https://backend-tinder.onrender.com"
-    const url2 = "http://localhost:3000"
+    const url2 = "https://backend-tinder.onrender.com"
 
     const [tareasF , setTareasF] = useState([]);
     const [estadoTarea , setestadoTarea] = useState([]);
@@ -24,7 +24,16 @@ const ConsultarServiciosPersonas = () => {
 
     useEffect(() => {
         console.log("consulta de tareas por persona")
-        fetch(`${url1}/api/v1/tareas/persona/${id_persona}/`)
+        let tokeen = (sessionStorage.getItem('token'));
+        fetch(`${url2}/api/v1/tareas/persona/${id_persona}/`,{
+            method:"GET",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization" : tokeen
+            }
+
+
+        })
             .then(response => response.json())
 
             .then(jsonData => {

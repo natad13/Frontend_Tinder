@@ -15,7 +15,7 @@ const Home = () => {
     const navigate = useNavigate();
     const [inicio, setInicio]=useState("");
     const url1 ="https://backend-tinder.onrender.com"
-    const url2 = "http://localhost:3000"
+    const url2 = "https://backend-tinder.onrender.com"
 
     const sesion = () => {
       setInicio("Usuario o contraseña incorrecta");
@@ -25,7 +25,7 @@ const Home = () => {
 
     const login = (usuario, password, tipo) => {
       console.log('entre a funcion login ')
-      fetch(`${url1}/api/v1/login/auth`, {
+      fetch(`${url2}/api/v1/login/auth`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

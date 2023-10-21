@@ -9,14 +9,25 @@ const Home = () => {
     const [personas, setPersonas] = useState([]);
     const {id} = useParams();
     const url1 ="https://backend-tinder.onrender.com"
-    const url2 = "http://localhost:3000"
+    const url2 = "https://backend-tinder.onrender.com"
     const [filtroNombre,setFiltroNombre] = useState('');
     const imagenes =["river", "cartoon","park","beautiful","relax"]
     function getRandomInt(max) {
       return Math.floor(Math.random() * max);
     }
     useEffect(() => {
-      fetch(`${url1}/api/v1/persona/`)
+      console.log("A continuacion el token")
+        let tokeen = (sessionStorage.getItem('token'));
+      fetch(`${url2}/api/v1/persona/`,{
+
+        method:"GET",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization" : tokeen
+            }
+
+
+      })
       .then(response => response.json())
       
       .then(jsonData => {
@@ -26,7 +37,7 @@ const Home = () => {
        
       })
       .catch(error => {
-        alert('No se pudo establecer conexión a la API. ');
+        alert('No se pudo establecer conexión a la API-Error de autenticacion. ');
       })
    
     }, []);

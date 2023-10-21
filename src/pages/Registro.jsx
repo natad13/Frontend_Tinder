@@ -30,7 +30,7 @@ const Registro = () => {
 
     function Funcion_post() {
 
-        fetch(`${url2}/api/v1/persona/`, {
+        fetch(`${url1}/api/v1/persona/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

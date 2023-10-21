@@ -21,7 +21,7 @@ const RegistroEmpresa = () => {
 
     function Funcion_post() {
 
-        fetch(`${url2}/api/v1/empresas/`, {
+        fetch(`${url1}/api/v1/empresas/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

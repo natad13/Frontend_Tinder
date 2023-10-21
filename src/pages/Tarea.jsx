@@ -22,7 +22,7 @@ export default function Tarea() {
     function Funcion_post() {
 
         console.log("entre a post de crear tarea")
-        fetch(`${url2}/api/v1/tareas/`, {
+        fetch(`${url1}/api/v1/tareas/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

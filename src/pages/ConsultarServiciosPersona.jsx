@@ -24,7 +24,7 @@ const ConsultarServiciosPersonas = () => {
 
     useEffect(() => {
         console.log("consulta de tareas por persona")
-        fetch(`${url2}/api/v1/tareas/persona/${id_persona}/`)
+        fetch(`${url1}/api/v1/tareas/persona/${id_persona}/`)
             .then(response => response.json())
 
             .then(jsonData => {
